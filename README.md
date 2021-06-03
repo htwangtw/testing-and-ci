@@ -1,11 +1,10 @@
 # Remark Slide Starter
 
+Original: https://github.com/aedificatorum/remark-slide-starter.git
+
 ## Quickstart
 
 ```bash
-git clone https://github.com/aedificatorum/remark-slide-starter.git new-slides
-cd new-slides
-git remote remove origin
 npm install
 npm run present
 ```
