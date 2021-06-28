@@ -37,8 +37,8 @@ npm run present
 
 # Modifying Content
 
-- Slides live in `public/slides.md`
-- Customise fonts in `public/styles.css`
+- Slides live in `slides.md`
+- Customise fonts in `assets/styles.css`
 
 ---
 
