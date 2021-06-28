@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Get started with a bootstrapped remarkjs slideshow",
   "scripts": {
-    "present": "live-server ./public/ --verbose",
+    "present": "live-server ./ --verbose",
     "export": "decktape remark http://127.0.0.1:8080/index.html slides.pdf"
   },
   "repository": {
