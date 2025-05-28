@@ -4,7 +4,7 @@ class: center middle
 ### Hao-Ting Wang
 #### CRIUGM
 
-###### [wanghaoting.com/bids-ecosystem](https://wanghaoting.com/testing-and-ci/)
+###### [wanghaoting.com/testing-and-ci](https://wanghaoting.com/testing-and-ci/)
 ###### Updated from 2023 Brainhack School Montreal lecture from François Paugam
 ---
 name: footer
@@ -207,8 +207,6 @@ def test_check_mask_affine():
 
 ---
 
-class: center
-
 # How do we store our tests?
 
 - Module and functions
@@ -259,6 +257,10 @@ template: footer
 
 ---
 
+# Continuous integration for scientific analysis - 
+
+---
+
 # Tools used in the hands on
 
 - **Pytest** for writing and running tests
@@ -272,4 +274,4 @@ class: center middle
 
 # Questions?
 
-###### [wanghaoting.com/testing_n_ci](https://wanghaoting.com/testing-and-ci/)
+###### [wanghaoting.com/testing-and-ci](https://wanghaoting.com/testing-and-ci/)
