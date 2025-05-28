@@ -172,9 +172,15 @@ class: center middle
 
 ---
 
+template: footer
+class: center middle
+
 # Break (?)
 
 ---
+
+template: footer
+class: center middle
 
 # Continuous integration
 
@@ -210,6 +216,9 @@ template: footer
 
 ## Pytest for writing and running tests
 ## Github actions for the continuous integration
+
+
+[Repo](https://github.com/FrancoisPgm/testing_CI_module)
 
 ---
 
