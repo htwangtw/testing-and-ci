@@ -113,9 +113,6 @@ Source: https://www.softwaretestinghelp.com/types-of-software-testing/
   - Regression Testing
 ]
 
---
-
-
 .pull-right[
   ## Non-Functional Testing: How well does it work?
   - Performance/Load/Stress Testing
