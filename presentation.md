@@ -176,7 +176,6 @@ def _check_mask_affine(
         Index of masks with odd affine matrix. Return None when all masks have
         the same affine matrix.
     """
-    ...
 ```
 
 ---
@@ -262,8 +261,8 @@ template: footer
 
 # Tools used in the hands on
 
-## Pytest for writing and running tests
-## Github actions for the continuous integration
+- **Pytest** for writing and running tests
+- **Github actions** for the continuous integration
 
 [Repo](https://github.com/FrancoisPgm/testing_CI_module)
 
