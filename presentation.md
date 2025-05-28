@@ -180,7 +180,7 @@ template: footer
 
 # Continuous integration
 
-![:img Continuous Integration, 60%](assets/ci.png)
+![:img Continuous Integration, 60%](assets/ci.jpg)
 
 ---
 
