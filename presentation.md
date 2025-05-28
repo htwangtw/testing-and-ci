@@ -152,59 +152,63 @@ Source: https://www.softwaretestinghelp.com/types-of-software-testing/
 
 # Example of unit test from giga connectome 0.6.0
 
---
-
-.pull-left[
-
-  `giga_connectome/mask.py`
-  
-  ```python
-  def _check_mask_affine(
-      mask_imgs: Sequence[Path | str | Nifti1Image],
-  ) -> list[int] | None:
-      """Given a list of input mask images, show the most common affine matrix
-      and subjects with different values.
-
-      Parameters
-      ----------
-      mask_imgs : :obj:`list` of Niimg-like objects
-          See :ref:`extracting_data`.
-          3D or 4D EPI image with same affine.
-
-      Returns
-      -------
-
-      list or None
-          Index of masks with odd affine matrix. Return None when all masks have
-          the same affine matrix.
-      """
-      ...
-  ```
-]
+Let's look at the original function in `giga_connectome/mask.py`
 
 --
 
-.pull-right[
-  `giga_connectome/tests/test_mask.py`:
-  ```python
-  def test_check_mask_affine():
-      """Check odd affine detection."""
+```python
+def _check_mask_affine(
+    mask_imgs: Sequence[Path | str | Nifti1Image],
+) -> list[int] | None:
+    """Given a list of input mask images, show the most common affine matrix
+    and subjects with different values.
 
-      img_base = np.zeros([5, 5, 6])
-      processed_vol = img_base.copy()
-      processed_vol[2:4, 2:4, 2:4] += 1
-      processed = Nifti1Image(processed_vol, np.eye(4))
-      weird = Nifti1Image(processed_vol, np.eye(4) * np.array([1, 1, 1.5, 1]).T)
-      weird2 = Nifti1Image(processed_vol, np.eye(4) * np.array([1, 1, 1.6, 1]).T)
-      exclude = mask._check_mask_affine(
-          [processed, processed, processed, processed, weird, weird, weird2]
-      )
-      assert len(exclude) == 3
-      assert exclude == [4, 5, 6]
-  ```
-]
+    Parameters
+    ----------
+    mask_imgs : :obj:`list` of Niimg-like objects
+        See :ref:`extracting_data`.
+        3D or 4D EPI image with same affine.
+
+    Returns
+    -------
+
+    list or None
+        Index of masks with odd affine matrix. Return None when all masks have
+        the same affine matrix.
+    """
+    ...
+```
 
 ---
+
+# Example of unit test from giga connectome 0.6.0
+
+What do you expect this test to do?
+
+Test in: `giga_connectome/tests/test_mask.py`:
+
+--
+
+```python
+def test_check_mask_affine():
+    """Check odd affine detection."""
+
+    img_base = np.zeros([5, 5, 6])
+    processed_vol = img_base.copy()
+    processed_vol[2:4, 2:4, 2:4] += 1
+    processed = Nifti1Image(processed_vol, np.eye(4))
+    weird = Nifti1Image(processed_vol, np.eye(4) * np.array([1, 1, 1.5, 1]).T)
+    weird2 = Nifti1Image(processed_vol, np.eye(4) * np.array([1, 1, 1.6, 1]).T)
+    exclude = mask._check_mask_affine(
+        [processed, processed, processed, processed, weird, weird, weird2]
+    )
+    assert len(exclude) == 3
+    assert exclude == [4, 5, 6]
+```
+
+---
+
+class: center
 
 # How do we store our tests?
 
@@ -214,7 +218,7 @@ Source: https://www.softwaretestinghelp.com/types-of-software-testing/
 - Executable documentation
 - Evaluate performance (speed, memory)
 
-## Should we test our tests ?
+.center[## Should we test our tests ?]
 
 ---
 template: footer
