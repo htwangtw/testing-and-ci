@@ -1,2 +1,2 @@
-# testing_n_ci
+# testing-and-ci
 Slides for testing and CI class
