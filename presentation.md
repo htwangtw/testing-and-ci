@@ -16,11 +16,11 @@ layout: true
 
 # Outline
 
-1. What is testing?
+1. What is Testing?
 
 2. What is Continuous Integration
 
-3. Let's practice both.
+3. Let's look at an example.
 
 ---
 
@@ -150,6 +150,62 @@ Source: https://www.softwaretestinghelp.com/types-of-software-testing/
 
 ---
 
+# Example of unit test from giga connectome 0.6.0
+
+--
+
+.pull-left[
+
+  `giga_connectome/mask.py`
+  
+  ```python
+  def _check_mask_affine(
+      mask_imgs: Sequence[Path | str | Nifti1Image],
+  ) -> list[int] | None:
+      """Given a list of input mask images, show the most common affine matrix
+      and subjects with different values.
+
+      Parameters
+      ----------
+      mask_imgs : :obj:`list` of Niimg-like objects
+          See :ref:`extracting_data`.
+          3D or 4D EPI image with same affine.
+
+      Returns
+      -------
+
+      list or None
+          Index of masks with odd affine matrix. Return None when all masks have
+          the same affine matrix.
+      """
+      ...
+  ```
+]
+
+--
+
+.pull-right[
+  `giga_connectome/tests/test_mask.py`:
+  ```python
+  def test_check_mask_affine():
+      """Check odd affine detection."""
+
+      img_base = np.zeros([5, 5, 6])
+      processed_vol = img_base.copy()
+      processed_vol[2:4, 2:4, 2:4] += 1
+      processed = Nifti1Image(processed_vol, np.eye(4))
+      weird = Nifti1Image(processed_vol, np.eye(4) * np.array([1, 1, 1.5, 1]).T)
+      weird2 = Nifti1Image(processed_vol, np.eye(4) * np.array([1, 1, 1.6, 1]).T)
+      exclude = mask._check_mask_affine(
+          [processed, processed, processed, processed, weird, weird, weird2]
+      )
+      assert len(exclude) == 3
+      assert exclude == [4, 5, 6]
+  ```
+]
+
+---
+
 # How do we store our tests?
 
 - Module and functions
@@ -168,22 +224,14 @@ class: center middle
 ## ... when would we have time to do anything else 😱?!
 
 ---
-
 template: footer
 class: center middle
-
-# Break (?)
-
----
-
-template: footer
 
 # Continuous integration
 
 ![:img Continuous Integration, 60%](assets/ci.jpg)
 
 ---
-
 template: footer
 
 # We want to
@@ -212,7 +260,6 @@ template: footer
 
 ## Pytest for writing and running tests
 ## Github actions for the continuous integration
-
 
 [Repo](https://github.com/FrancoisPgm/testing_CI_module)
 
