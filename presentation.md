@@ -177,7 +177,6 @@ class: center middle
 ---
 
 template: footer
-class: center middle
 
 # Continuous integration
 
