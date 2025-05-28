@@ -4,7 +4,7 @@ class: center middle
 ### Hao-Ting Wang
 #### CRIUGM
 
-###### [wanghaoting.com/bids-ecosystem](https://wanghaoting.com/testing_n_ci/)
+###### [wanghaoting.com/bids-ecosystem](https://wanghaoting.com/testing-and-ci/)
 ###### Updated from 2023 Brainhack School Montreal lecture from François Paugam
 ---
 name: footer
@@ -60,6 +60,12 @@ layout: true
 
 # Types of Testing
 
+.footnote[
+Source: https://www.softwaretestinghelp.com/types-of-software-testing/
+]
+
+--
+
 .pull-left[
   ## Functional Testing: Does it work?
   - Unit Testing
@@ -80,18 +86,23 @@ count: false
   - Install Testing
 ]
 
-.footnote[
-Source: https://www.softwaretestinghelp.com/types-of-software-testing/
-]
+---
+
+template: footer
+class: center middle
+
+![:img integration testing failure, 40%](assets/integration-testing-fail.png)
 
 ---
 
-![:img integration testing failure, 60%](assets/integration-testing-fail.png)
-
----
+template: footer
 
 # What kind of tests should I focus on?
 
+.footnote[
+Source: https://www.softwaretestinghelp.com/types-of-software-testing/
+]
+
 --
 
 .pull-left[
@@ -104,7 +115,6 @@ Source: https://www.softwaretestinghelp.com/types-of-software-testing/
 
 --
 
-count: false
 
 .pull-right[
   ## Non-Functional Testing: How well does it work?
@@ -114,9 +124,6 @@ count: false
   - Install Testing
 ]
 
-.footnote[
-Source: https://www.softwaretestinghelp.com/types-of-software-testing/
-]
 
 ---
 
@@ -154,27 +161,28 @@ Source: https://www.softwaretestinghelp.com/types-of-software-testing/
 - Executable documentation
 - Evaluate performance (speed, memory)
 
-#### Should we test our tests ?
+## Should we test our tests ?
 
 ---
 template: footer
 class: center middle
 
-#### If we are supposed to do this every time we change something...
-#### ... when would we have time to do anything else 😱?!
+## If we are supposed to do this every time we change something...
+## ... when would we have time to do anything else 😱?!
 
 ---
 
 # Break (?)
 
 ---
-template: footer
 
 # Continuous integration
 
-[![:img Continuous Integration, 60%](assets/ci.png)](https://devonblog.com/continuous-delivery/continuous-integration-best-practices/)
+![:img Continuous Integration, 60%](assets/ci.png)
 
 ---
+
+template: footer
 
 # We want to
 
@@ -200,8 +208,8 @@ template: footer
 
 # Tools used in the hands on
 
-- Pytest for writing and running tests
-- Github actions for the continuous integration
+## Pytest for writing and running tests
+## Github actions for the continuous integration
 
 ---
 
@@ -209,4 +217,4 @@ class: center middle
 
 # Questions?
 
-###### [wanghaoting.com/testing_n_ci](https://wanghaoting.com/testing_n_ci/)
+###### [wanghaoting.com/testing_n_ci](https://wanghaoting.com/testing-and-ci/)
