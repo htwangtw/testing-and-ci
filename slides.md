@@ -1,5 +1,4 @@
 layout: true
-
 .footer[I am a footer. I would benefit from some styling.]
 
 ---
