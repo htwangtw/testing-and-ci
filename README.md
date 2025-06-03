@@ -1,6 +1,5 @@
-# Remark Slide Starter
-
-Original: https://github.com/aedificatorum/remark-slide-starter.git
+# testing-and-ci
+Slides for testing and CI class
 
 ## Quickstart
 
@@ -8,9 +7,3 @@ Original: https://github.com/aedificatorum/remark-slide-starter.git
 npm install
 npm run present
 ```
-
-## More info
-
-- Slideshow built with `remark` - https://remarkjs.com
-- Served up with `live-server` - https://github.com/tapio/live-server
-- PDF exported by `decktape` - https://github.com/astefanutti/decktape
