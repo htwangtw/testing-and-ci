@@ -126,5 +126,11 @@ blockquote {
 }
 /* image */
 img[alt=image] {
-    height: 550px;
+    height: 300px;
+}
+
+.contain-image > img {
+  max-width: 66%;
+  max-height: 66%;
+  object-fit: contain;
 }

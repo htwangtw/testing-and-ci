@@ -16,8 +16,3 @@ h3 {
   font-family: "Ubuntu Mono";
 }
 
-.contain-image > img {
-  max-width: 66%;
-  max-height: 66%;
-  object-fit: contain;
-}

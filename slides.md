@@ -158,10 +158,83 @@ Source: https://www.softwaretestinghelp.com/types-of-software-testing/
 
 ---
 
-# Example of unit test from giga connectome 0.6.0
+# How do we store our tests?
+
+- Module and functions
+- External scripts
+- Example workflows
+- Executable documentation
+- Evaluate performance (speed, memory)
+
+.center[## Should we test our tests ?]
+
+---
+
+# Testing in Python with Pytest
+
+.footnote[
+    Pytest: https://docs.pytest.org/en/stable/
+]
+
+.pull-left[
+
+First you need to install `pytest`:
+
+```bash
+pip install pytest
+```
+
+A minimal example:
+
+```python
+# content of test_sample.py
+def inc(x):
+    return x + 1
+
+
+def test_answer():
+    assert inc(3) == 5
+
+```
+
+Run it:
+
+```bash
+pytest
+```
+]
+
+--
+
+.pull-right[
+
+When structuring your tests in a package:
+
+- Usually, we store our test in a directory called `tests`
+    
+- The test files will be named after the module name, prefix with `test_`, such as `tests/test_mymodule.py`
+
+- Then you can configure `pyproject.toml` to specify where the tests are:
+
+    ```toml
+    [tool.pytest.ini_options]
+    testpaths = ["tests/"]
+    ```
+- You can then run `pytest` at the root of the package to trigger the tests.
+- Otherwise you have to specify the path:
+    ```bash
+    pytest tests/test_mymodule.py
+    ```
+]
+
+---
+
+# Example of test from giga connectome 0.6.0
 
 Let's look at the original function in `giga_connectome/mask.py`
-
+.footnote2[
+    https://github.com/bids-apps/giga_connectome/blob/main/giga_connectome/mask.py
+]
 --
 
 ```python
@@ -188,11 +261,11 @@ def _check_mask_affine(
 
 ---
 
-# Example of unit test from giga connectome 0.6.0
-
-What do you expect this test to do?
+# Example of test from giga connectome 0.6.0
 
 Test in: `giga_connectome/tests/test_mask.py`:
+
+.footnote2[https://github.com/bids-apps/giga_connectome/blob/main/giga_connectome/tests/test_mask.py]
 
 --
 
@@ -213,17 +286,153 @@ def test_check_mask_affine():
     assert exclude == [4, 5, 6]
 ```
 
+--
+
+You can run this very specific test like this:
+```bash
+pytest giga_connectome/tests/test_mask.py::test_check_mask_affine
+```
+
 ---
 
-# How do we store our tests?
+# Bonus trick: including tests in a pyhton script
 
-- Module and functions
-- External scripts
-- Example workflows
-- Executable documentation
-- Evaluate performance (speed, memory)
+.footnote2[https://gist.github.com/htwangtw/93b725f187110c1f586fd12f59a863c9]
 
-.center[## Should we test our tests ?]
+--
+count: false
+
+
+A basic python script:
+```python
+# import some library
+
+# main function that has all the workflows
+def main(): 
+    ...
+
+if __name__ == "__main__":
+    main()
+
+```
+---
+count: false
+
+# Bonus trick: including tests in a pyhton script
+
+.footnote2[https://gist.github.com/htwangtw/93b725f187110c1f586fd12f59a863c9]
+
+--
+count: false
+
+```python
+import re
+# skip some library import
+
+niak_pattern = r"fmri_sub(?P<sub>[A-Za-z0-9]*)_sess(?P<ses>[A-Za-z0-9]*)_task(?P<task>[A-Za-z0-9]{,4})(run(?P<run>[0-9]{2}))?"
+
+# Skipping a bunch of preprocessing stuff
+def niak2bids(niak_filename):  # We want to test this function
+    """Parse niak file name to BIDS entities."""
+    print(niak_filename)
+    compile_name = re.compile(niak_pattern)
+    return compile_name.search(niak_filename).groupdict()
+
+# main function that has all the workflows
+def main(): 
+    ...
+
+# run script:
+# python extract_timeseries.py
+if __name__ == "__main__":
+    main()
+```
+
+---
+count: false
+
+# Bonus trick: including tests in a pyhton script
+
+.footnote2[https://gist.github.com/htwangtw/93b725f187110c1f586fd12f59a863c9]
+
+```python
+# run script:
+# python extract_timeseries.py
+if __name__ == "__main__":
+    main()
+
+# run tests:
+# pytest extract_timeseries.py
+def test_niak2bids():
+    """Check niak name parser."""
+    case_1 = "fmri_sub130S5006_sess20121114_taskrestrun01_n.nii.gz"
+    case_2 = "fmri_sub130S5006_sess20121114_taskrest_n.nii.gz"
+    assert niak2bids(case_1).get("run", False) == "01"
+    assert niak2bids(case_2).get("run", False) == False
+```
+
+---
+
+# Test coverage
+
+.footnote2[https://app.codecov.io/gh/bids-apps/giga_connectome/tree/main/giga_connectome?displayType=tree]
+
+- Test coverage describe the degree to which a code base has been tested by a test suite
+
+.center[.contain-image[![test-coverage](assets/test-coverage.png)]]
+
+---
+
+# Coverage in PyTest
+
+.footnote2[https://github.com/pytest-dev/pytest-cov]
+
+--
+
+.pull-left[
+Installation
+
+```bash
+pip install pytest-cov
+```
+
+Usage:
+
+```bash
+pytest --cov=myproj tests/
+```
+
+]
+
+--
+
+.pull-right[
+Would produce a report like:
+
+```bash
+-------------------- coverage: ... ---------------------
+Name                 Stmts   Miss  Cover
+----------------------------------------
+myproj/__init__          2      0   100%
+myproj/myproj          257     13    94%
+myproj/feature4286      94      7    92%
+----------------------------------------
+TOTAL                  353     20    94%
+```
+]
+
+---
+
+# Principles of testing
+
+- Test locally first
+
+- Test frequently
+
+- Write small tests
+
+- Use test to examine the complexity of the function
+
 
 ---
 template: footer
@@ -246,33 +455,152 @@ template: footer
 - Write the basic scaffolding of our project
 
 --
+count: false
 
 - Set it up to install and run using CI
-
---
-
   - if we went so far as to write the tests first, this would be called "test driven development"
 
 --
+count: false
 
 - Add tests alongside new features
 
 --
+count: false
 
 - Let CI spend time running the tests while we go drink coffee
 
 ---
 
-# Continuous integration for scientific analysis - 
+# GitHub Action minial example for testing 
+
+```ymal
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Assuming your pyproject.toml has all the dependency info
+          pip install . 
+          pip install pytest pytest-cov
+      - name: Test with pytest and generate coverage
+        pytest --cov=mypackage --cov-report=xml --pyargs mypackage
+```
 
 ---
 
-# Tools used in the hands on
+# Good practices for pain free integration
 
-- **Pytest** for writing and running tests
-- **Github actions** for the continuous integration
+.footnote[Source: https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html]
 
-[Repo](https://github.com/FrancoisPgm/testing_CI_module)
+--
+count:false
+- Use virtual environments
+--
+count:false
+- Define your dependencies in `pyproject.toml` and use `pip` for installing: `pip install -e .[dev]`
+--
+count:false
+- Name your test files with prefix `test_` to allow automatic discovery
+--
+count:false
+
+- Structure your project to allow easy discovery by `pytest`\*:
+
+.footnote2[\*This is not the only type of structure, see this [blog post](https://blog.ionelmc.ro/2014/05/25/python-packaging/#the-structure%3E).]
+
+--
+count:false
+
+.pull-left[
+```bash
+pyproject.toml
+[src/]mypkg/
+    __init__.py
+    app.py
+    view.py
+    test/
+        __init__.py
+        test_app.py
+        test_view.py
+        ...
+```
+]
+--
+count:false
+
+.pull-right[
+
+Run:
+```bash
+pytest --pyargs mypkg
+```
+]
+
+---
+
+# Other practices you might want to consider in the integration check
+
+--
+count:false 
+
+.pull-left[
+`pre-commit`: Various style/type check for code.
+
+- Associated file: `.pre-commit-config.yaml` and options in `pyproject.toml`
+
+- Trim white space
+
+- Check style and file format (various hooks implemented for basic file types) 
+
+- Spell checker `codespell`
+
+- Automatic formating `black`
+
+- Code style check `flake8`
+
+- Type check (if you are doing it) `mypy`
+]
+
+--
+count:false
+
+.pull-right[
+### You can also...
+
+- Build/upload Docker container
+
+- Download data (for testing)
+
+- Build a PDF paper
+
+- Send notification and messages
+
+- [Put a like button on your README](https://github.com/ariary/Readme-Like-Button)
+]
+
+---
+
+# Resources
+
+- [Type of software testing](https://www.softwaretestinghelp.com/types-of-software-testing/)
+- [Jeanette’s starter kit for packaging](https://github.com/jmumford/packaging-notes)
+- [Good practice for integration](https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html)
+- [Packaging a python library](https://blog.ionelmc.ro/2014/05/25/python-packaging/#the-structure%3E): This blog post specificly focused on different structure and impact on testing.
+- [Example of including tests in a script](https://gist.github.com/htwangtw/93b725f187110c1f586fd12f59a863c9)
 
 ---
 
