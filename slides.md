@@ -373,7 +373,7 @@ def test_niak2bids():
 
 ---
 
-# Test coverage
+# Bonus: Test coverage
 
 .footnote2[https://app.codecov.io/gh/bids-apps/giga_connectome/tree/main/giga_connectome?displayType=tree]
 
@@ -383,7 +383,7 @@ def test_niak2bids():
 
 ---
 
-# Coverage in PyTest
+# Bonus: Coverage in PyTest
 
 .footnote2[https://github.com/pytest-dev/pytest-cov]
 
@@ -601,6 +601,12 @@ count:false
 - [Good practice for integration](https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html)
 - [Packaging a python library](https://blog.ionelmc.ro/2014/05/25/python-packaging/#the-structure%3E): This blog post specificly focused on different structure and impact on testing.
 - [Example of including tests in a script](https://gist.github.com/htwangtw/93b725f187110c1f586fd12f59a863c9)
+
+---
+
+# Hands on: create unit tests, integration test, and CI
+
+https://github.com/school-brainhack/testing_CI_module
 
 ---
 
