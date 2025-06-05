@@ -14,163 +14,220 @@ layout: true
 
 ---
 
+.left-column[
 # Outline
+]
+--
+count:false
 
+.right-column[
 1. What is Testing?
 
-2. What is Continuous Integration
+2. Pytest
 
-3. Let's look at an example.
+3. What is Continuous Integration
+
+4. Github Action
+
+]
+
+---
+count:false
+
+.left-column[
+# Outline
+]
+
+.right-column[
+1. What is Testing?
+
+2. Pytest
+
+3. What is Continuous Integration
+
+4. Github Action
+
+If you just want to complete the module exercise, you can skip all the bonus content.
+Bonus contents will require knowledge in software packaging.
+]
 
 ---
 
-# What is the purpose of testing?
+layout:true
+template: footer
+# What is Testing?
 
+---
+
+.left-column[
+## The purpose of testing?
+]
+
+---
+count:false
+
+.left-column[
+## The purpose of testing?
+]
+
+.right-column[
 - Verify our tool doesn't crash
-
---
-count: false
-
 - Make sure inputs/outputs are in the expected form
-
---
-count: false
-
 - Make sure our tool handles corner-cases
-
---
-count: false
-
 - Make sure the outputs are of sufficient "quality"
-
---
-count: false
-
 - Evaluate performance
-
---
-count: false
-
 - Identify bugs
-
---
-count: false
-
 - Test the effectiveness of bug fixes
-
---
-count: false
-
 - ...
+]
+
 
 ---
 
-# Types of Testing
+.left-column[
+## The purpose of testing?
+## Types of Testing
+]
 
+
+--
+count: false
+
+.right-column[
+.footnote[
+Source: https://www.softwaretestinghelp.com/types-of-software-testing/
+]
+### Functional Testing: Does it work?
+- Unit Testing
+- Integration Testing
+- Smoke Testing
+- Regression Testing
+]
+
+---
+
+count: false
+
+.left-column[
+## The purpose of testing?
+## Types of Testing
+]
+
+.right-column[
 .footnote[
 Source: https://www.softwaretestinghelp.com/types-of-software-testing/
 ]
 
---
-count: false
+### Functional Testing: Does it work?
+- Unit Testing
+- Integration Testing
+- Smoke Testing
+- Regression Testing
 
-.pull-left[
-  ## Functional Testing: Does it work?
-  - Unit Testing
-  - Integration Testing
-  - Smoke Testing
-  - Regression Testing
+### Non-Functional Testing: How well does it work?
+- Performance/Load/Stress Testing
+- Volume Testing
+- Compatibility Testing
+- Install Testing
 ]
-
---
-
-count: false
-
-.pull-right[
-  ## Non-Functional Testing: How well does it work?
-  - Performance/Load/Stress Testing
-  - Volume Testing
-  - Compatibility Testing
-  - Install Testing
-]
-
 
 ---
 
-class: center, middle
+.left-column[
+## The purpose of testing?
+## Types of Testing
+]
+.right-column[
 
 .center[.contain-image[![fail ah](assets/integration-testing-fail.png)]]
 
+]
+
 ---
 
-template: footer
-
-# What kind of tests should I focus on?
-
-.footnote[
-Source: https://www.softwaretestinghelp.com/types-of-software-testing/
+.left-column[
+## The purpose of testing?
+## Types of Testing
+## What kind of tests should I focus on?
 ]
 
 --
+count: false
 
-.pull-left[
-  ## Functional Testing: Does it work?
-  - Unit Testing
-  - Integration Testing
-  - Smoke Testing
-  - Regression Testing
+.right-column[
+.footnote[
+Source: https://www.softwaretestinghelp.com/types-of-software-testing/
 ]
+### Functional Testing: Does it work?
+- Unit Testing
+- Integration Testing
+- Smoke Testing
+- Regression Testing
 
-.pull-right[
-  ## Non-Functional Testing: How well does it work?
-  - Performance/Load/Stress Testing
-  - Volume Testing
-  - Compatibility Testing
-  - Install Testing
+### Non-Functional Testing: How well does it work?
+- Performance/Load/Stress Testing
+- Volume Testing
+- Compatibility Testing
+- Install Testing
 ]
-
 
 ---
 
 count: false
 
-# What kind of tests should I focus on?
-
-.pull-left[
-  ## Functional Testing: Does it work?
-  - *Unit Testing*
-  - *Integration Testing*
-  - *_Smoke Testing_*
-  - Regression Testing
+.left-column[
+## The purpose of testing?
+## Types of Testing
+## What kind of tests should I focus on?
 ]
 
-.pull-right[
-  ## Non-Functional Testing: How well does it work?
-  - *Performance/Load/Stress Testing*
-  - Volume Testing
-  - Compatibility Testing
-  - *_Install Testing_*
-]
-
+.right-column[
 .footnote[
 Source: https://www.softwaretestinghelp.com/types-of-software-testing/
 ]
+### Functional Testing: Does it work?
+- *Unit Testing*
+- *Integration Testing*
+- *_Smoke Testing_*
+- Regression Testing
+
+### Non-Functional Testing: How well does it work?
+- *Performance/Load/Stress Testing*
+- Volume Testing
+- Compatibility Testing
+- *_Install Testing_*
+]
+
+
 
 ---
 
-# How do we store our tests?
+.left-column[
+## The purpose of testing?
+## Types of Testing
+## What kind of tests should I focus on?
+## How do we store our tests?
+]
 
+--
+count: false
+
+.right-column[
 - Module and functions
 - External scripts
 - Example workflows
 - Executable documentation
 - Evaluate performance (speed, memory)
-
-.center[## Should we test our tests ?]
+]
 
 ---
 
+template: footer
+layout:true
+
+---
 # Testing in Python with Pytest
+
 
 .footnote[
     Pytest: https://docs.pytest.org/en/stable/
@@ -200,7 +257,7 @@ def test_answer():
 Run it:
 
 ```bash
-pytest
+pytest test_sample.py
 ```
 ]
 
@@ -208,7 +265,7 @@ pytest
 
 .pull-right[
 
-When structuring your tests in a package:
+In a package (Bonus)
 
 - Usually, we store our test in a directory called `tests`
     
@@ -295,7 +352,7 @@ pytest giga_connectome/tests/test_mask.py::test_check_mask_affine
 
 ---
 
-# Bonus trick: including tests in a pyhton script
+# Including tests in a pyhton script
 
 .footnote2[https://gist.github.com/htwangtw/93b725f187110c1f586fd12f59a863c9]
 
@@ -318,7 +375,7 @@ if __name__ == "__main__":
 ---
 count: false
 
-# Bonus trick: including tests in a pyhton script
+# Including tests in a pyhton script
 
 .footnote2[https://gist.github.com/htwangtw/93b725f187110c1f586fd12f59a863c9]
 
@@ -351,7 +408,7 @@ if __name__ == "__main__":
 ---
 count: false
 
-# Bonus trick: including tests in a pyhton script
+# Including tests in a pyhton script
 
 .footnote2[https://gist.github.com/htwangtw/93b725f187110c1f586fd12f59a863c9]
 
@@ -373,23 +430,29 @@ def test_niak2bids():
 
 ---
 
-# Bonus: Test coverage
+.left-column[
+## Bonus: Test coverage
 
-.footnote2[https://app.codecov.io/gh/bids-apps/giga_connectome/tree/main/giga_connectome?displayType=tree]
-
-- Test coverage describe the degree to which a code base has been tested by a test suite
-
+Test coverage describe the degree to which a code base has been tested by a test suite
+]
+.right-column[
 .center[.contain-image[![test-coverage](assets/test-coverage.png)]]
+.footnote2[https://app.codecov.io/gh/bids-apps/giga_connectome/tree/main/giga_connectome?displayType=tree]
+]
 
 ---
 
-# Bonus: Coverage in PyTest
+.left-column[
+## Bonus: Test coverage
 
-.footnote2[https://github.com/pytest-dev/pytest-cov]
+## Coverage in PyTest
+]
 
 --
 
-.pull-left[
+.right-column[
+.footnote2[https://github.com/pytest-dev/pytest-cov]
+
 Installation
 
 ```bash
@@ -401,12 +464,30 @@ Usage:
 ```bash
 pytest --cov=myproj tests/
 ```
+]
+---
+count: false
 
+.left-column[
+## Bonus: Test coverage
+
+## Coverage in PyTest
 ]
 
---
+.right-column[
+.footnote2[https://github.com/pytest-dev/pytest-cov]
 
-.pull-right[
+Installation
+
+```bash
+pip install pytest-cov
+```
+
+Usage:
+
+```bash
+pytest --cov=myproj tests/
+```
 Would produce a report like:
 
 ```bash
@@ -417,7 +498,7 @@ myproj/__init__          2      0   100%
 myproj/myproj          257     13    94%
 myproj/feature4286      94      7    92%
 ----------------------------------------
-TOTAL                  353     20    94%
+TOTAL  
 ```
 ]
 
@@ -469,10 +550,37 @@ count: false
 count: false
 
 - Let CI spend time running the tests while we go drink coffee
+---
+
+# GitHub Action: minial example for scripts
+
+```ymal
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest
+      - name: Test with pytest
+        pytest
+```
 
 ---
 
-# GitHub Action minial example for testing 
+# GitHub Action: minial example for packages
 
 ```ymal
 on: [push]
@@ -503,27 +611,61 @@ jobs:
 ---
 
 # Good practices for pain free integration
-
+.pull-right[
 .footnote[Source: https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html]
-
+]
 --
 count:false
 - Use virtual environments
+
 --
 count:false
+
+## Bonus: for packages
+
+--
+count:false
+
 - Define your dependencies in `pyproject.toml` and use `pip` for installing: `pip install -e .[dev]`
+
 --
 count:false
 - Name your test files with prefix `test_` to allow automatic discovery
---
+
+---
 count:false
+
+# Good practices for pain free integration
+- Use virtual environments
+
+## Bonus: for packages
+
+- Define your dependencies in `pyproject.toml` and use `pip` for installing: `pip install -e .[dev]`
+
+- Name your test files with prefix `test_` to allow automatic discovery
 
 - Structure your project to allow easy discovery by `pytest`\*:
 
+.pull-right[
+.footnote[Source: https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html]
+
 .footnote2[\*This is not the only type of structure, see this [blog post](https://blog.ionelmc.ro/2014/05/25/python-packaging/#the-structure%3E).]
 
---
+]
+
+---
 count:false
+
+# Good practices for pain free integration
+- Use virtual environments
+
+## Bonus: for packages
+
+- Define your dependencies in `pyproject.toml` and use `pip` for installing: `pip install -e .[dev]`
+
+- Name your test files with prefix `test_` to allow automatic discovery
+
+- Structure your project to allow easy discovery by `pytest`\*:
 
 .pull-left[
 ```bash
@@ -539,8 +681,40 @@ pyproject.toml
         ...
 ```
 ]
---
+
+.pull-right[
+.footnote[Source: https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html]
+
+.footnote2[\*This is not the only type of structure, see this [blog post](https://blog.ionelmc.ro/2014/05/25/python-packaging/#the-structure%3E).]
+
+]
+---
 count:false
+
+# Good practices for pain free integration
+- Use virtual environments
+
+## Bonus: for packages
+- Define your dependencies in `pyproject.toml` and use `pip` for installing: `pip install -e .[dev]`
+
+- Name your test files with prefix `test_` to allow automatic discovery
+
+- Structure your project to allow easy discovery by `pytest`\*:
+
+.pull-left[
+```bash
+pyproject.toml
+[src/]mypkg/
+    __init__.py
+    app.py
+    view.py
+    test/
+        __init__.py
+        test_app.py
+        test_view.py
+        ...
+```
+]
 
 .pull-right[
 
@@ -548,6 +722,10 @@ Run:
 ```bash
 pytest --pyargs mypkg
 ```
+.footnote[Source: https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html]
+
+.footnote2[\*This is not the only type of structure, see this [blog post](https://blog.ionelmc.ro/2014/05/25/python-packaging/#the-structure%3E).]
+
 ]
 
 ---
